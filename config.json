@@ -1,0 +1,16 @@
+{
+  "ownerID": "716491639857872928",
+  "prefix": "sob!",
+  "clientId": "1060486524539514911",
+  "guildId": "1021330928481620018",
+  "sobColor": "#3240A8",
+  "gmh": {
+        "Path": "./commands/GM",
+        "Avatars": "avatars.txt",
+        "Items": "item.txt",
+        "Monsters": "monsters.txt",
+        "Quests": "quests.txt",
+        "Gadgets": "gadgets.txt",
+        "If_Choices_is_Null": "fullHandbook.txt"
+    }
+}

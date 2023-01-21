@@ -1,0 +1,7 @@
+# replit
+.replit*
+replit.nix
+
+# node
+/node_modules*
+package-lock.json*

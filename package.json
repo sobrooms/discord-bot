@@ -1,0 +1,24 @@
+{
+  "name": "sobroombot",
+  "version": "1.0.0",
+  "description": "bot for sobrooms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "mangorifo",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.4.0",
+    "@types/node": "^18.0.6",
+    "axios": "^1.2.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cli-color": "^2.0.3",
+    "colors": "^1.4.0",
+    "discord-api-types": "^0.37.28",
+    "discord.js": "^14.7.1",
+    "node-fetch": "^3.2.6"
+  }
+}
