@@ -6,10 +6,12 @@ const versions = [
   "v2.1.1"
 ]
 const getVer = {
-  details: require('./so.json').desc || "failed to get desc",
-  changes: require('./so.json').changes || "failed to get changes",
-  download: require('./so.json').download || "https://failed.to.fetch.details"
+  details: require('./so.json').desc || 'failed to get desc',
+  changes: require('./so.json').changes || 'failed to get changes',
+  download: require('./so.json').download || 'https://failed.to.fetch.details',
 }
 module.exports = {
-  lts, getVer, versions
+  lts,
+  getVer,
+  versions,
 }
