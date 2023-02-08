@@ -1,7 +1,7 @@
 {
   "vtwopone": {
-    "details": "SobseedPS' third build!",
-    "changes": "Add windy command, add windy path to ConfigContainer",
-    "download": "https://sobroom.rrryfoo.cf/SobSeed/builds/sobseed_v2.1.jar"
+    "details": "some fixes",
+    "changes": "Fix windy command, add /sob command",
+    "download": "https://sobroom.rrryfoo.cf/SobSeed/builds/sobseed_v2.1.1.jar"
   }
 }
