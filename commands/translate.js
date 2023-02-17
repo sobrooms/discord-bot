@@ -112,7 +112,10 @@ module.exports = {
         { name: 'Chinese', value: 'zh-cn' },
         { name: 'Taiwanese Mandarin', value: 'zh-tw' },
         { name: 'Thai', value: 'th' },
-        { name: 'Vietnamese', value: 'vi' }
+        { name: 'Vietnamese', value: 'vi' },
+        { name: 'Indonesian', value: 'id' },
+        { name: 'Javanese', value: 'jw' },
+        { name: 'Hebrew', value: 'iw' }
       ))
     .addStringOption(option =>
       option.setName("text").setDescription("Text to translate").setRequired(true)),
