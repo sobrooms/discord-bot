@@ -111,6 +111,7 @@ exitEvents?.forEach((e) => {
       })
       .setColor('#32a852')
       .setTimestamp();
-    return c.send({ embeds: [over] });
+    await c.send({ embeds: [over] });
+    return process.exit(69);
   });
 })
