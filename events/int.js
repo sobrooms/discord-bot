@@ -1,4 +1,6 @@
 const { EmbedBuilder } = require('discord.js')
+const config = require('../config.json')
+
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
@@ -10,11 +12,11 @@ module.exports = {
         return;
       }
       await command.execute(interaction);
-      const c = interaction.client.channels.cache.get("1062333691541606432");
+      const c = interaction.client.channels.cache.get(config.server_channels.acLog);
       const m = new EmbedBuilder()
-        .setTitle('Command usage logs')
+        .setTitle('Command was used | Logs')
         .addFields({
-          name: 'Used by',
+          name: 'Member',
           value: interaction.user.username + ' (<@' + interaction.user.id + '> - ' + interaction.user.id + ')',
           inline: true
         })
@@ -46,7 +48,7 @@ module.exports = {
 
       try {
         // execute autocomplete
-        const c = interaction.client.channels.cache.get("1062333691541606432");
+        const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog));
         await command.autocomplete(interaction);
         const mb = new EmbedBuilder()
           .setTitle("Responded to autocomplete")
@@ -64,7 +66,7 @@ module.exports = {
           .setTimestamp(new Date())
         c.send({ embeds: [mb] })
       } catch (err) {
-        const c = interaction.client.channels.cache.get("1062333691541606432");
+        const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog);
         console.error(err)
         const mb = new EmbedBuilder()
           .setTitle("Failed to respond to autocomplete")

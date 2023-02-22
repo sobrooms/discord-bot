@@ -11,7 +11,7 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
     await interaction.reply(`Killed node process with exit code: ${interaction.options.getInteger("exitcode")}`);
-    const ch = interaction.client.channels?.cache?.get("1065859892335886437");
+    const ch = interaction.client.channels?.cache?.get(require('../config.json').server_channels.acLogin);
     const emb = new EmbedBuilder()
       .setTitle("Process killed")
       .setDescription(`Process killed by ${interaction.user.tag}`)

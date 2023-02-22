@@ -43,11 +43,11 @@ module.exports = {
         if (int.member.hasPermission("ADMINISTRATOR") === "true") {
           ;
         } else {
-          return int.reply({ content: 'no not there', ephemeral: true })
+          return int.reply({ content: 'You do not have permission to sob there :sob:', ephemeral: true })
         }
       }
     }
-    channel.send(int.user.username + ' sobbed: ' + Date.now() + ', for ' + timesto + ' times in ' + int.channel.name + '(<#' + int.channel.id + '>)');
+    channel.send(int.user.username + ' sobbed: ' + Date.now() + ', for ' + timesto + ' times in ' + int.channel.name + ' (<#' + int.channel.id + '>)');
     if (timesto > 1) {
       await int.reply({ content: "sobbed " + timesto + " times with type: " + type, ephemeral: true });
     } else {
@@ -60,6 +60,6 @@ module.exports = {
         int.channel.send(type)
       }
     }
-    log("CMD-LOG", `${int.user.username} sobbed for ${timesto}`);
+    log("CMD-LOG", `${int.user.username} sobbed ${timesto} times`);
   }
 };

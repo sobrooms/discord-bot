@@ -98,13 +98,13 @@ client.on('messageCreate', async (message, args) => {
     }
   }
 })
-const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'];
+const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM', 'SIGKILL'];
 exitEvents?.forEach((e) => {
   process.on(e, async function () {
-    const c = client.channels.cache.get("1062333691541606432");
+    const c = client.channels.cache.get(require('./config.json').server_channels.acLogin);
     const over = new EmbedBuilder()
       .setTitle('Process Ended')
-      .setDescription('Bot process was automatically ended with the event: ' + e + '.')
+      .setDescription(determine(e))
       .addFields({
         name: 'Exit time',
         value: `${Date.now()} - ${new Date()}`,
@@ -115,3 +115,22 @@ exitEvents?.forEach((e) => {
     return process.exit(69);
   });
 })
+
+function determine(event) {
+  if (event === 'exit') {
+    return 'The bot process ended normally'
+  }
+  if (event === 'SIGINT') {
+    return 'The bot process was manually ended';
+  }
+  if (event === 'SIGUSR1' || event === 'SIGUSR2' || event === 'SIGTERM') {
+    // idk what these are, but let's just use this
+    return 'The bot process was automatically ended'
+  }
+  if (event === 'uncaughtException') {
+    return 'The bot process was ended due to an uncaught exception. (Error)'
+  }
+  if (event === 'SIGKILL') {
+    return 'The bot process was ended unconditionally/forcefully.'
+  }
+}

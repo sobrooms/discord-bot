@@ -5,12 +5,16 @@
   "guildId": "1021330928481620018",
   "sobColor": "#3240A8",
   "gmh": {
-        "Path": "./commands/GM",
-        "Avatars": "avatars.txt",
-        "Items": "item.txt",
-        "Monsters": "monsters.txt",
-        "Quests": "quests.txt",
-        "Gadgets": "gadgets.txt",
-        "If_Choices_is_Null": "fullHandbook.txt"
-    }
+    "Path": "./commands/GM",
+    "Avatars": "avatars.txt",
+    "Items": "item.txt",
+    "Monsters": "monsters.txt",
+    "Quests": "quests.txt",
+    "Gadgets": "gadgets.txt",
+    "If_Choices_is_Null": "fullHandbook.txt"
+  },
+  "server_channels": {
+    "acLogin": 1065859892335886437,
+    "acLog": 1062333691541606432
+  }
 }
