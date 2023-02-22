@@ -100,7 +100,7 @@ client.on('messageCreate', async (message, args) => {
 })
 const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'];
 exitEvents?.forEach((e) => {
-  process.on(e, function () {
+  process.on(e, async function () {
     const c = client.channels.cache.get("1062333691541606432");
     const over = new EmbedBuilder()
       .setTitle('Process Ended')
