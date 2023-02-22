@@ -98,3 +98,18 @@ client.on('messageCreate', async (message, args) => {
     }
   }
 })
+[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((e) => {
+  process.on(e, function () {
+    const c = interaction.client.channels.cache.get("1062333691541606432");
+    const over = new EmbedBuilder()
+      .setTitle('Process Ended')
+      .setDescription('Bot process was automatically ended with the event: ' + e + '.')
+      .addFields({
+        name: 'Exit time',
+        value: `${Date.now()} - ${new Date()}`,
+      })
+      .setColor('#32a852')
+      .setTimestamp();
+    return c.send({ embeds: [over] });
+  });
+})
