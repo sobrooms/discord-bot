@@ -48,7 +48,7 @@ module.exports = {
 
       try {
         // execute autocomplete
-        const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog));
+        const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog);
         await command.autocomplete(interaction);
         const mb = new EmbedBuilder()
           .setTitle("Responded to autocomplete")
