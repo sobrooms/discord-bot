@@ -98,7 +98,8 @@ client.on('messageCreate', async (message, args) => {
     }
   }
 })
-[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((e) => {
+const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM'];
+exitEvents?.forEach((e) => {
   process.on(e, function () {
     const c = interaction.client.channels.cache.get("1062333691541606432");
     const over = new EmbedBuilder()
