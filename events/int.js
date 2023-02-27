@@ -4,6 +4,7 @@ const config = require('../config.json')
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
+  if (interaction.isChatInputCommand() {
     try {
       const command = interaction.client.commands.get(interaction.commandName);
       if (!command) {
@@ -36,8 +37,7 @@ module.exports = {
       c.send({ embeds: [m] });
     } catch (error) {
       return console.error(error);
-    }
-    if (interaction.isAutocomplete()) {
+    }} else if (interaction.isAutocomplete()) {
       // get command
       const command = client.commands.get(interaction.commandName);
       // if command is not found then return
