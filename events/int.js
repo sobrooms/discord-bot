@@ -37,7 +37,7 @@ module.exports = {
       c?.send({ embeds: [m] });
     } catch (error) {
       return console.error(error);
-    } else if (interaction.isAutocomplete()) {
+    }} else if (interaction.isAutocomplete()) {
       // get command
       const command = client.commands.get(interaction.commandName);
       // if command is not found then return
