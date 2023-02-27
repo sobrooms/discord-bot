@@ -30,7 +30,7 @@ module.exports = {
     interaction.respond(command);
   },
   async execute(interaction) {
-    const command = interaction.options.getString("command").toLowerCase();
+    const command = interaction.options.getString("command")?.toLowerCase();
     const allSlash = interaction.client.commands.map(command => command.data.name);
     const embed = new EmbedBuilder()
       .setTitle("Bot help")
