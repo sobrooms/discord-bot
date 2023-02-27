@@ -50,8 +50,7 @@ module.exports = {
           .setTimestamp(new Date())
         c.send({ embeds: [mb] })
       }
-    }
-    if (interaction.isChatInputCommand()) {
+    } else if (interaction.isChatInputCommand()) {
     try {
       const command = interaction.client.commands.get(interaction.commandName);
       if (!command) {
