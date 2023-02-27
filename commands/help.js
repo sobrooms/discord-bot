@@ -34,7 +34,7 @@ module.exports = {
     const allSlash = interaction.client.commands.map(command => command.data.name);
     const embed = new EmbedBuilder()
       .setTitle("Bot help")
-      .setDescription(interaction.client.user.username + "\nin " + interaction.guild.name)
+      .setDescription(interaction.client.user.username + ", in " + interaction.guild.name + "\nA bot made for the [sobrooms](https://sobroom.rrryfoo.cf) group, which was made by [rrryfoo](https://rrryfoo.cf).")
       .setTimestamp()
       .setFooter({
         text: `Requested by ${interaction.user.username}`,
