@@ -82,6 +82,7 @@ module.exports = {
           })
           .setTimestamp(new Date())
         c.send({ embeds: [mb] })
+        return interaction.respond([{name:'Hey, if you\'re seeing this, the bot has failed to respond to autocomplete.',value:'h'}]);
       }
     }
   }
