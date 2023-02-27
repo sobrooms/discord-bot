@@ -4,7 +4,7 @@ const config = require('../config.json')
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
-  if (interaction.isChatInputCommand() {
+  if (interaction.isChatInputCommand()) {
     try {
       const command = interaction.client.commands.get(interaction.commandName);
       if (!command) {
