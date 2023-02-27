@@ -4,7 +4,40 @@ const config = require('../config.json')
 module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
-  if (interaction.isAutocomplete()) {
+  if (interaction.isChatInputCommand()) {
+    try {
+      const command = interaction.client.commands.get(interaction.commandName);
+      if (!command) {
+        console.log(`No command matching ${interaction.commandName} was found.`);
+        return;
+      }
+      await command.execute(interaction);
+      const c = interaction.client.channels.cache.get(config.server_channels.acLog);
+      const m = new EmbedBuilder()
+        .setTitle('Command was used | Logs')
+        .addFields({
+          name: 'Member',
+          value: interaction.user.username + ' (<@' + interaction.user.id + '> - ' + interaction.user.id + ')',
+          inline: true
+        })
+        .setTimestamp(new Date())
+        .addFields({
+          name: 'Command name',
+          value: '/' + interaction.commandName,
+          inline: true
+        })
+        .setColor(require('../config.json').sobColor);
+      if (interaction.guild) {
+        m.addFields({
+          name: 'Channel command was used in',
+          value: '#' + interaction.channel.name || "DMs " + ' (<#' + interaction.guild.name || "undefined" + '>)',
+          inline: true
+        })
+      }
+      c?.send({ embeds: [m] });
+    } catch (error) {
+      return console.error(error);
+    } else if (interaction.isAutocomplete()) {
       // get command
       const command = client.commands.get(interaction.commandName);
       // if command is not found then return
@@ -50,39 +83,6 @@ module.exports = {
           .setTimestamp(new Date())
         c.send({ embeds: [mb] })
       }
-    } else if (interaction.isChatInputCommand()) {
-    try {
-      const command = interaction.client.commands.get(interaction.commandName);
-      if (!command) {
-        console.log(`No command matching ${interaction.commandName} was found.`);
-        return;
-      }
-      await command.execute(interaction);
-      const c = interaction.client.channels.cache.get(config.server_channels.acLog);
-      const m = new EmbedBuilder()
-        .setTitle('Command was used | Logs')
-        .addFields({
-          name: 'Member',
-          value: interaction.user.username + ' (<@' + interaction.user.id + '> - ' + interaction.user.id + ')',
-          inline: true
-        })
-        .setTimestamp(new Date())
-        .addFields({
-          name: 'Command name',
-          value: '/' + interaction.commandName,
-          inline: true
-        })
-        .setColor(require('../config.json').sobColor);
-      if (interaction.guild) {
-        m.addFields({
-          name: 'Channel command was used in',
-          value: '#' + interaction.channel.name || "DMs " + ' (<#' + interaction.guild.name || "undefined" + '>)',
-          inline: true
-        })
-      }
-      c?.send({ embeds: [m] });
-    } catch (error) {
-      return console.error(error);
     }
-  }}
+  }
 };
