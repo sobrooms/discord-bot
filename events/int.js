@@ -34,7 +34,7 @@ module.exports = {
           inline: true
         })
       }
-      c.send({ embeds: [m] });
+      c?.send({ embeds: [m] });
     } catch (error) {
       return console.error(error);
     }} else if (interaction.isAutocomplete()) {
