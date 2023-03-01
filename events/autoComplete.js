@@ -27,7 +27,7 @@ module.exports = {
                         inline: true
                     })
                     .setColor(require('../config.json').sobColor)
-                    .setTimestamp(new Date())
+                    .setTimestamp()
                 c.send({ embeds: [mb] })
             } catch (err) {
                 const c = interaction.client.channels.cache.get(logChannel);
@@ -45,7 +45,7 @@ module.exports = {
                         value: '/' + interaction.commandName,
                         inline: true
                     })
-                    .setTimestamp(new Date())
+                    .setTimestamp()
                 c.send({ embeds: [mb] })
                 return interaction.respond([{ name: 'Hey, if you\'re seeing this, the bot has failed to respond to your autocomplete interaction.', value: 'h' }]);
             }
