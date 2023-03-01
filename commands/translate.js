@@ -129,7 +129,7 @@ module.exports = {
     const lgc = languagesFlags[language] || "<:thefeke138Idk:1036202813530837003> Unknown language";
     const log = require('../util/log');
     if (!translated) return i.reply("no translation found");
-    log("CMD-LOG", `${i.user.username} translated text: ${textToTranslate} to language ${language} and got result ${translated}`)
+    log("CMD-LOG", `${i.user.username} translated text: "${textToTranslate}" to language ${language} and recieved result "${translated}"`)
     const embed = new EmbedBuilder()
       .setTitle("Translate")
       .addFields({
