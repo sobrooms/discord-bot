@@ -38,27 +38,31 @@ module.exports = {
     const timesto = int.options.getInteger("times") || 1;
     const channel = int.client.channels.cache.get("1062333691541606432");
     const channelop = int.options.getChannel("channel");
+    let ended;
     if (channelop) {
       if (channelop === "1044857131926564945" || channelop === "1044554861687099433" || channelop === "1044554031139405844" || channelop === "1044857131926564945") {
         if (int.member.hasPermission("ADMINISTRATOR") === "true") {
           ;
         } else {
           return int.reply({ content: 'You do not have permission to sob there :sob:', ephemeral: true })
+          ended = true;
         }
       }
     }
-    channel.send(int.user.username + ' sobbed: ' + Date.now() + ', for ' + timesto + ' times in ' + int.channel.name + ' (<#' + int.channel.id + '>)');
-    if (timesto > 1) {
-      await int.reply({ content: "sobbed " + timesto + " times with type: " + type, ephemeral: true });
-    } else {
-      await int.reply({ content: "sobbed " + timesto + " time with type: " + type, ephemeral: true });
-    }
-    for (let i = 0; i < timesto; i++) {
-      if (channelop) {
-        await channelop.send(type)
+    if (ended) {return;} else {
+      if (timesto > 1) {
+        await int.reply({ content: "sobbed " + timesto + " times with type: " + type, ephemeral: true });
       } else {
-        int.channel.send(type)
+        await int.reply({ content: "sobbed " + timesto + " time with type: " + type, ephemeral: true });
       }
+      for (let i = 0; i < timesto; i++) {
+        if (channelop) {
+          await channelop.send(type)
+        } else {
+          int.channel.send(type)
+        }
+      }
+      channel.send(int.user.username + ' sobbed: ' + Date.now() + ', for ' + timesto + ' times in ' + int.channel.name + ' (<#' + int.channel.id + '>)');
     }
     log("CMD-LOG", `${int.user.username} sobbed ${timesto} times`);
   }
