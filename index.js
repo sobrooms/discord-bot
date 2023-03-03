@@ -1,4 +1,9 @@
 console.clear();
+console.log(require('./config.json').botName)
+console.log(`
+Node version: ${process.version}
+OS: ${process.platform}
+`)
 const {
   Client,
   Events,
@@ -38,6 +43,7 @@ try {
       .setColor('#32a852')
       .setTimestamp()
     ch?.send({ content: '<@716491639857872928>', embeds: [emb] })
+    console.log('3: Client start\n')
     log('CLIENT', `Logged into ${c.user.tag}. Sob!`)
     log('CLIENT', 'Logs from commands or errors will be written below.')
     console.log('---------------------------------------')
@@ -48,15 +54,17 @@ try {
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((file) => file.endsWith('.js'))
-
   console.log('---------------------------------------')
+  console.log('1: Command loading\n')
   console.log('Loading commands...')
   console.log('Commands loaded:')
+  let cmdlen = []
   for (const file of commandFiles) {
     try {
       const filePath = path.join(commandsPath, file)
       const command = require(filePath)
-
+      cmdlen.push(command)
+      
       // Set a new item in the Collection with the key as the command name and the value as the exported module
       if ('data' in command && 'execute' in command) {
         console.log('/' + command.data.name)
@@ -70,7 +78,9 @@ try {
       return log("CMD-EXEC", "Failed to execute command and recievied error:\n" + err);
     }
   }
+  console.log('Loaded ' + cmdlen.length + ' commands.')
   console.log('---------------------------------------')
+  console.log('2. Command registering\n')
   // register cmds
   require('./slash')
   // Handle events

@@ -1,6 +1,6 @@
 const { REST, Routes } = require('discord.js')
 const { clientId, guildId } = require('./config.json')
-const token = process.env.token
+const token = process.env.token;
 const fs = require('node:fs')
 require('dotenv').config()
 
@@ -22,14 +22,14 @@ const rest = new REST({ version: '10' }).setToken(token)
 // and deploy your commands!
 ;(async () => {
   try {
-    console.log(`Refreshing ${commands.length} application commands...`)
+    console.log(`Refreshing all applications commands...`)
 
     // The put method is used to fully refresh all commands with the current set
     const data = await rest.put(Routes.applicationCommands(clientId), {
       body: commands,
     })
 
-    console.log(`Reloaded ${commands.length} commands.`)
+    console.log(`Reloaded ${commands.length} commands successfully.`)
     console.log('---------------------------------------')
   } catch (error) {
     // And of course, make sure you catch and log any errors!
