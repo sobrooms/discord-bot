@@ -28,13 +28,11 @@ module.exports = {
             inline: true
           })
           .setColor(require('../config.json').sobColor);
-        if (interaction.guild) {
-          m.addFields({
-            name: 'Channel command was used in',
-            value: '#' + interaction.channel.name || "DMs " + ' (<#' + interaction.guild.name || "undefined" + '>)',
-            inline: true
-          })
-        }
+        m.addFields({
+          name: 'Channel and command was used in',
+          value: interaction.guild ? `Command was used in <#${interaction.channel.id}> in guild "${interaction.channel.name}"` : "Direct/private messages",
+          inline: true
+        });
         c?.send({ embeds: [m] });
       } catch (error) {
         return console.error(error);
