@@ -123,7 +123,7 @@ client.on('messageCreate', async (message, args) => {
   }
 })
 const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM', 'SIGKILL'];
-exitEvents?.forEach((e) => {
+/*exitEvents?.forEach((e) => {
   process.on(e, async function () {
     const c = client.channels.cache.get(require('./config.json').server_channels.acLogin);
     const over = new EmbedBuilder()
@@ -138,7 +138,7 @@ exitEvents?.forEach((e) => {
     await c.send({ embeds: [over] });
     return process.exit(1);
   });
-})
+})*/
 
 function determine(event) {
   if (event === 'exit') {
