@@ -14,7 +14,7 @@ module.exports = {
     const gcm = interaction.client.commands.map(command => command.data.name);
     const gmc = interaction.options.getString("command");
     const command = [];
-    for (const command of gcm) {
+    for (const cmd of gcm) {
       if (cmd.toLowerCase().startsWith(gmc.toLowerCase())) {
         command.push({
           name: cmd,
