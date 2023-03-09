@@ -30,7 +30,7 @@ module.exports = {
           .setColor(require('../config.json').sobColor);
         m.addFields({
           name: 'Channel and command was used in',
-          value: interaction.guild ? `Command was used in <#${interaction.channel.id}> in guild "${interaction.channel.name}"` : "Direct/private messages",
+          value: interaction.guild ? `Command was used in <#${interaction.channel.id}> (${interaction.channel.name}) in guild "${interaction.guild.name}"` : "Direct/private messages",
           inline: true
         });
         c?.send({ embeds: [m] });
