@@ -3,6 +3,7 @@ module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
         if (interaction.isAutocomplete()) {
+            let logChannel = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog);
             await require("../util/log")("EVENT-LOG", "Autocomplete event was triggered")
             // get command
             const command = interaction.client.commands.get(interaction.commandName);
@@ -12,7 +13,7 @@ module.exports = {
             }
             try {
                 // execute autocomplete
-                const c = interaction.client.channels.cache.get(logChannel);
+                const c = logChannel;
                 await command.autocomplete(interaction);
                 const mb = new EmbedBuilder()
                     .setTitle("Responded to autocomplete")
@@ -30,7 +31,7 @@ module.exports = {
                     .setTimestamp()
                 c.send({ embeds: [mb] })
             } catch (err) {
-                const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog);
+                const c = logChannel;
                 await require('../util/log')("EVENT-LOG", "Autocomplete event failed with error:\n" + err);
                 const mb = new EmbedBuilder()
                     .setTitle("Failed to respond to autocomplete")
