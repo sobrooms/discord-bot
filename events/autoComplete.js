@@ -30,7 +30,7 @@ module.exports = {
                     .setTimestamp()
                 c.send({ embeds: [mb] })
             } catch (err) {
-                const c = interaction.client.channels.cache.get(logChannel);
+                const c = interaction.client.channels.cache.get(require('../config.json').server_channels.acLog);
                 await require('../util/log')("EVENT-LOG", "Autocomplete event failed with error:\n" + err);
                 const mb = new EmbedBuilder()
                     .setTitle("Failed to respond to autocomplete")
