@@ -45,7 +45,7 @@ module.exports = {
       const isHidden = require('./' + slashCommandName + '.js').hidden || false;
       if (isHidden === true) {} else {
         embed.addFields({
-          name: `</${interaction.commandName}:${interaction.commandId}>`,
+          name: `</${slashCommandName}:0>`,
           value: require('./' + slashCommandName + '.js').description || "A command without a description",
           inline: true
         })
