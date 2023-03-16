@@ -36,7 +36,7 @@ module.exports = {
         c?.send({ embeds: [m] });
       } catch (error) {
         console.error(error);
-        return require('../util/log')('EVENT-LOG.back', `ChatInputCommand interaction triggered by ${interaction.user.username} failed`)
+        return require('../util/log')('EVENT-LOG.back', `ChatInputCommand interaction triggered by ${interaction.user.username} failed: ${error}`)
       }
     }
   }
