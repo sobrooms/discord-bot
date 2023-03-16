@@ -1,8 +1,10 @@
 {
   "botName": "sob",
+  "botName2": "sobdev",
   "ownerID": "716491639857872928",
   "prefix": "sob!",
   "clientId": "1060486524539514911",
+  "clientId2": "1061946500076285952",
   "guildId": "1021330928481620018",
   "sobColor": "#3240A8",
   "gmh": {

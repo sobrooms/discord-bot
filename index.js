@@ -1,6 +1,6 @@
 console.clear();
-console.log(require('./config.json').botName)
 console.log(`
+${require('./config.json').botName}
 Node version: ${process.version}
 OS: ${process.platform}
 `)
@@ -17,7 +17,7 @@ const path = require('node:path')
 const log = require('./util/log')
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 require('dotenv').config()
-
+const token = process.env.token2;
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
 try {
@@ -46,7 +46,9 @@ try {
     console.log('3: Client start\n')
     log('CLIENT', `Logged into ${c.user.tag}. Sob!`)
     log('CLIENT', 'Logs from commands or errors will be written below.')
+    log('CLIENT', 'Errors or logs will also be written in app.log, just in case...')
     console.log('---------------------------------------')
+    log('CLIENT.back', `New login on ${c.user.tag}...`, false, true, true)
   })
   // Handle commands
   client.commands = new Collection()
@@ -67,7 +69,7 @@ try {
       
       // Set a new item in the Collection with the key as the command name and the value as the exported module
       if ('data' in command && 'execute' in command) {
-        console.log('/' + command.data.name)
+        console.log(`/${command.data.name}`)
         client.commands.set(command.data.name, command)
       } else {
         console.log(
@@ -75,7 +77,7 @@ try {
         )
       }
     } catch (err) {
-      return log("CMD-EXEC", "Failed to execute command and recievied error:\n" + err);
+      return log("CMD-EXEC", "Failed to execute command and recieved error:\n" + err);
     }
   }
   console.log('Loaded ' + cmdlen.length + ' commands.')
@@ -99,14 +101,14 @@ try {
         client.on(event.name, (...args) => event.execute(...args))
       }
     } catch (err) {
-      log("EVENT-LOG", "Failed to execute event. Node returned error:\n" + err);
+      return log("EVENT-LOG.back", "Failed to execute event. Node returned error:\n" + err, false, true);
     }
   }
 
 
-  client.login(process.env.token)
+  client.login(token)
 } catch (err) {
-  return log("CLIENT", "Error occured in client:\n" + err);
+  return log("CLIENT.back", "Error occured in client:" + err, false, true);
 }
 client.on('messageCreate', async (message, args) => {
   if (
@@ -123,7 +125,7 @@ client.on('messageCreate', async (message, args) => {
   }
 })
 const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM', 'SIGKILL'];
-/*exitEvents?.forEach((e) => {
+exitEvents?.forEach((e) => {
   process.on(e, async function () {
     const c = client.channels.cache.get(require('./config.json').server_channels.acLogin);
     const over = new EmbedBuilder()
@@ -136,9 +138,10 @@ const exitEvents = ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException',
       .setColor('#32a852')
       .setTimestamp();
     await c.send({ embeds: [over] });
+    await log('CLIENT.back', `Process ended with event: ${e}.`, false, true)
     return process.exit(1);
   });
-})*/
+})
 
 function determine(event) {
   if (event === 'exit') {

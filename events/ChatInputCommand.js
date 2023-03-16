@@ -5,7 +5,7 @@ module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
     if (interaction.isChatInputCommand()) {
-      await require('../util/log')("EVENT-LOG", "ChatInputCommand event was triggered")
+      await require('../util/log')("EVENT-LOG", "ChatInputCommand event was triggered by " + interaction.user.username, false, true)
       try {
         const command = interaction.client.commands.get(interaction.commandName);
         if (!command) {
@@ -24,7 +24,7 @@ module.exports = {
           .setTimestamp(new Date())
           .addFields({
             name: 'Command name',
-            value: '/' + interaction.commandName,
+            value: `</${interaction.commandName}:${interaction.commandId}>`,
             inline: true
           })
           .setColor(require('../config.json').sobColor);
@@ -35,7 +35,8 @@ module.exports = {
         });
         c?.send({ embeds: [m] });
       } catch (error) {
-        return console.error(error);
+        console.error(error);
+        return require('../util/log')('EVENT-LOG.back', `ChatInputCommand interaction triggered by ${interaction.user.username} failed`)
       }
     }
   }

@@ -64,6 +64,6 @@ module.exports = {
       }
       channel.send(int.user.username + ' sobbed: ' + Date.now() + ', for ' + timesto + ' times in ' + int.channel.name + ' (<#' + int.channel.id + '>)');
     }
-    log("CMD-LOG", `${int.user.username} sobbed ${timesto} times`);
+    log("CMD-LOG", `${int.user.username} sobbed ${timesto} times`, false, true);
   }
 };

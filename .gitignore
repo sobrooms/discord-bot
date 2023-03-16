@@ -8,3 +8,6 @@ package-lock.json*
 
 # from anon
 .env*
+
+# from app
+app.log
