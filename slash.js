@@ -1,6 +1,6 @@
 const { REST, Routes } = require('discord.js')
 const { clientId, clientId2, guildId } = require('./config.json')
-const token = process.env.token2;
+const token = process.env.token;
 const fs = require('node:fs')
 require('dotenv').config()
 
@@ -25,7 +25,7 @@ const rest = new REST({ version: '10' }).setToken(token)
     console.log(`Updating all application commands...`)
 
     // The put method is used to fully refresh all commands with the current set
-    const data = await rest.put(Routes.applicationCommands(clientId2), {
+    const data = await rest.put(Routes.applicationCommands(clientId), {
       body: commands,
     })
 

@@ -17,7 +17,7 @@ const path = require('node:path')
 const log = require('./util/log')
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 require('dotenv').config()
-const token = process.env.token2;
+const token = process.env.token;
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
 try {
