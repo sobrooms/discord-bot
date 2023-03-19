@@ -3,7 +3,7 @@ let djsVersion = require('./package.json')?.dependencies["discord.js"]
 console.log(`
 Bot name: ${require('./config.json').botName}
 Node version: ${process.version}
-Discord.js version: ${djsVersion ? djsVersion : "None"} // doing this instead of the easy way because yes
+Discord.js version: ${djsVersion ? djsVersion : "Missing package" /*doing this instead of the easy way because yes*/}
 OS: ${process.platform}
 `)
 const {
